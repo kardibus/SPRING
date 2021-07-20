@@ -1,5 +1,6 @@
 package com.kardibus.spring.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Component
-public class FileWriteRecord implements FileWR {
+public class FileWriteRecordImpl implements FileWR {
+
 
     @Value("${pathFile}")
     private String path;

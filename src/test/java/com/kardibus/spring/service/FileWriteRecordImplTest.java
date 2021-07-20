@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class FileWriteRecordTest {
+public class FileWriteRecordImplTest {
 
     @Autowired
     private FileComponent fileComponent;
