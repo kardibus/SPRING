@@ -17,7 +17,7 @@ public class StaxXMLStreamWRImpl implements StaxXML {
 
     @Override
     public void writeXML(Stream<User> users) {
-        String rootElement = "Employee";
+        String rootElement = User.class.getName();
         //start writing xml file
         try {
             xmlStreamWriter.writeStartDocument("UTF-8", "1.0");
@@ -40,8 +40,8 @@ public class StaxXMLStreamWRImpl implements StaxXML {
             xmlStreamWriter.writeCharacters("\n");
             xmlStreamWriter.writeEndDocument();
             //flush data to file and close writer
-            xmlStreamWriter.flush();
-            xmlStreamWriter.close();
+         //   xmlStreamWriter.flush();
+          //  xmlStreamWriter.close();
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
