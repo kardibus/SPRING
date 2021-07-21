@@ -1,7 +1,7 @@
 package com.kardibus.spring.component;
 
-import com.kardibus.spring.service.FileWR;
-import com.kardibus.spring.service.FileWriteRecordImpl;
+import com.kardibus.spring.service.file.FileWR;
+import com.kardibus.spring.service.file.FileWriteRecordImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

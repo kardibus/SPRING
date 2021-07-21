@@ -1,4 +1,4 @@
-package com.kardibus.spring.service;
+package com.kardibus.spring.service.file;
 
 public interface FileWR {
     boolean isCreateFile();

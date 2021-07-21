@@ -1,8 +1,8 @@
 package com.kardibus.spring.controller;
 
 import com.kardibus.spring.component.FileComponent;
-import com.kardibus.spring.component.StaxXMLComponent;
-import com.kardibus.spring.service.StaxXMLStreamWRImpl;
+import com.kardibus.spring.service.StreamWrite;
+import com.kardibus.spring.service.stax.StaxXMLStreamWRImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FileController {
 
     private FileComponent fileComponent;
-    private StaxXMLStreamWRImpl staxXMLStreamWR;
+    private StreamWrite streamWrite;
 
     @GetMapping("/create")
     public String getCreate() {
@@ -28,7 +28,7 @@ public class FileController {
 
     @GetMapping("/write")
     public String getWriteXML() {
-        staxXMLStreamWR.writeXML();
+        streamWrite.write();
         return fileComponent.getFileWR().isCreateFile() == true ? "true" : "false";
     }
 }
