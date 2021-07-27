@@ -2,6 +2,7 @@ package com.kardibus.spring.component;
 
 import com.kardibus.spring.service.stax.StaxXML;
 import com.kardibus.spring.service.stax.StaxXMLStreamWRImpl;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ public class StaxXMLComponent {
     @Value("${pathFile}")
     private String path;
 
+    @SneakyThrows
     @Bean
     public StaxXML staxXML(XMLStreamWriter xmlStreamWriter) {
         return new StaxXMLStreamWRImpl(xmlStreamWriter);
@@ -29,22 +31,12 @@ public class StaxXMLComponent {
     }
 
     @Bean
-    public FileOutputStream fileOutputStream() {
-        try {
+    public FileOutputStream fileOutputStream() throws FileNotFoundException {
             return new FileOutputStream(path);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @Bean
-    public XMLStreamWriter xmlStreamWriter(XMLOutputFactory xmlOutputFactory, FileOutputStream fileOutputStream) {
-        try {
+    public XMLStreamWriter xmlStreamWriter(XMLOutputFactory xmlOutputFactory, FileOutputStream fileOutputStream) throws XMLStreamException {
             return xmlOutputFactory.createXMLStreamWriter(fileOutputStream, "UTF-8");
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

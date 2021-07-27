@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
-
 public class StreamWrite {
 
     private UserRepository userRepository;

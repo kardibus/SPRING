@@ -1,9 +1,11 @@
 package com.kardibus.spring.controller;
 
+import com.kardibus.spring.component.ExampleTestConfig;
 import com.kardibus.spring.component.FileComponent;
 import com.kardibus.spring.service.StreamWrite;
-import com.kardibus.spring.service.stax.StaxXMLStreamWRImpl;
+import com.kardibus.spring.util.AnnotationExampleTest;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +15,7 @@ public class FileController {
 
     private FileComponent fileComponent;
     private StreamWrite streamWrite;
+    private ExampleTestConfig exampleTestConfig;
 
     @GetMapping("/create")
     public String getCreate() {
@@ -22,6 +25,8 @@ public class FileController {
 
     @GetMapping("/delete")
     public String getDelete() {
+        exampleTestConfig.test().setMessage("Method delete in controller");
+        exampleTestConfig.test().say();
         fileComponent.getFileWR().deleteFile();
         return fileComponent.getFileWR().isCreateFile() == true ? "true" : "false";
     }
