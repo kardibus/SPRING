@@ -2,20 +2,22 @@ package com.kardibus.spring.controller;
 
 import com.kardibus.spring.component.ExampleTestConfig;
 import com.kardibus.spring.component.FileComponent;
+import com.kardibus.spring.service.SrviceExampleForTestConfig;
 import com.kardibus.spring.service.StreamWrite;
-import com.kardibus.spring.util.AnnotationExampleTest;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
 public class FileController {
 
+    private SrviceExampleForTestConfig srv;
     private FileComponent fileComponent;
     private StreamWrite streamWrite;
-    private ExampleTestConfig exampleTestConfig;
 
     @GetMapping("/create")
     public String getCreate() {
@@ -24,11 +26,10 @@ public class FileController {
     }
 
     @GetMapping("/delete")
-    public String getDelete() {
-        exampleTestConfig.test().setMessage("Method delete in controller");
-        exampleTestConfig.test().say();
+    public List<String> getDelete() {
+
         fileComponent.getFileWR().deleteFile();
-        return fileComponent.getFileWR().isCreateFile() == true ? "true" : "false";
+        return srv.getList();
     }
 
     @GetMapping("/write")
